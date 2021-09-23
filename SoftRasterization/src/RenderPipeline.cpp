@@ -125,16 +125,14 @@ bool IsInTriangle(glm::vec3& point, TriangleOrdinary& triangle, glm::vec3& area)
 
 auto texture(Texture& texture, glm::vec2 texCoords)
 {
-	texCoords = texCoords * glm::vec2(texture.width, texture.height) - glm::vec2(0.5f, 0.5f);
-	if (texCoords.x < 0.0f)
-		texCoords.x += texture.width;
-	if (texCoords.y < 0.0f)
-		texCoords.y += texture.height;
-	glm::u16vec2 points[4];
-	points[0] = glm::u16vec2((int)texCoords.x, (int)texCoords.y);
-	points[1] = glm::u16vec2(((int)texCoords.x + 1) % texture.width, (int)texCoords.y);
-	points[2] = glm::u16vec2((int)texCoords.x, ((int)texCoords.y + 1) % texture.height);
-	points[3] = glm::u16vec2(((int)texCoords.x + 1) % texture.width, ((int)texCoords.y + 1) % texture.height);
+	texCoords = clamp(texCoords, 0.0f, 1.0f);
+	texCoords = texCoords * glm::vec2(texture.width, texture.height) - glm::vec2(0.5f, 0.5f);//坐标平移（-0.5， -0.5）
+
+	glm::u32vec2 points[4];
+	points[0] = glm::u32vec2(clamp((int)texCoords.x, 0, texture.width - 1), clamp((int)texCoords.y, 0, texture.height - 1));
+	points[1] = glm::u32vec2(clamp((int)texCoords.x + 1, 0, texture.width - 1), clamp((int)texCoords.y, 0, texture.height - 1));
+	points[2] = glm::u32vec2(clamp((int)texCoords.x, 0, texture.width - 1), clamp((int)texCoords.y + 1, 0, texture.height - 1));
+	points[3] = glm::u32vec2(clamp((int)texCoords.x + 1, 0, texture.width - 1), clamp((int)texCoords.y + 1, 0, texture.height - 1));
 
 	//二次线性插值
 	//现在只处理diffuse, 是RGB24格式，数据为8位整形
@@ -343,9 +341,9 @@ int main()
 					auto diffuse = texture(diffuseMap, texCoords);
 
 
-					*(pixels + 3 * (y * rect.w + x)) = (unsigned int)diffuse.x;
-					*(pixels + 3 * (y * rect.w + x) + 1) = (unsigned int)diffuse.y;
-					*(pixels + 3 * (y * rect.w + x) + 2) = (unsigned int)diffuse.z;
+					*(pixels + 3 * (y * rect.w + x)) = (uint8_t)diffuse.x;
+					*(pixels + 3 * (y * rect.w + x) + 1) = (uint8_t)diffuse.y;
+					*(pixels + 3 * (y * rect.w + x) + 2) = (uint8_t)diffuse.z;
 
 
 					//*(pixels + 3 * (y * rect.w + x)) = 0;
