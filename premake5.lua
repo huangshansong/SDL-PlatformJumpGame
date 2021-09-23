@@ -12,15 +12,9 @@ outputdir  = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["vendor"] = "vendor"
-IncludeDir["spdlog"] = "vendor/spdlog/include"
-IncludeDir["ImGui"] = "vendor/imgui"
 IncludeDir["glm"] = "vendor/glm/glm"
 IncludeDir["SDL"] = "vendor/SDL/include"
 IncludeDir["assimp"] = "vendor/assimp/include"
-
-
-
-include "vendor/imgui"
 
 
 project "SoftRasterization"
@@ -35,8 +29,7 @@ project "SoftRasterization"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/src/**.hpp",	
+		"%{prj.name}/src/**.cpp",	
 	}
 	
 	includedirs
@@ -44,8 +37,6 @@ project "SoftRasterization"
 		"%{prj.name}",
 		"%{prj.name}/src",
 		"%{IncludeDir.vendor}",
-		"%{IncludeDir.spdlog}",
-		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.SDL}",
 		"%{IncludeDir.assimp}"
@@ -53,7 +44,6 @@ project "SoftRasterization"
 	
 	links
 	{
-		"ImGui",
 		"vendor/SDL/lib/x64/SDL2.lib",
 		"assimp-vc142-mtd.lib"
 	}

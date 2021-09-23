@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;src;..\vendor;..\vendor\spdlog\include;..\vendor\imgui;..\vendor\glm\glm;..\vendor\SDL\include;..\vendor\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;src;..\vendor;..\vendor\glm\glm;..\vendor\SDL\include;..\vendor\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -101,7 +101,7 @@ IF EXIST ..\vendor\assimp\include\assimp-vc142-mtd.dll\ (xcopy /Q /E /Y /I ..\ve
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;src;..\vendor;..\vendor\spdlog\include;..\vendor\imgui;..\vendor\glm\glm;..\vendor\SDL\include;..\vendor\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;src;..\vendor;..\vendor\glm\glm;..\vendor\SDL\include;..\vendor\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -127,7 +127,7 @@ IF EXIST ..\vendor\assimp\include\assimp-vc142-mtd.dll\ (xcopy /Q /E /Y /I ..\ve
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HZ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;src;..\vendor;..\vendor\spdlog\include;..\vendor\imgui;..\vendor\glm\glm;..\vendor\SDL\include;..\vendor\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;src;..\vendor;..\vendor\glm\glm;..\vendor\SDL\include;..\vendor\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -152,13 +152,8 @@ IF EXIST ..\vendor\assimp\include\assimp-vc142-mtd.dll\ (xcopy /Q /E /Y /I ..\ve
     <ClInclude Include="src\structures.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\VenderSetting.cpp" />
     <ClCompile Include="src\RenderPipeline.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\vendor\imgui\ImGui.vcxproj">
-      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
-    </ProjectReference>
+    <ClCompile Include="src\VenderSetting.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
